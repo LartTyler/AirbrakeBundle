@@ -8,8 +8,8 @@
 		/** @var AirbrakeService $airbrake */
 		private $airbrake;
 
-		public function __construct(AirbrakeService $service) {
-			$this->airbrake = $service->getClient();
+		public function __construct(AirbrakeService $airbrake) {
+			$this->airbrake = $airbrake;
 		}
 
 		public function onKernelException(GetResponseForExceptionEvent $event) {
