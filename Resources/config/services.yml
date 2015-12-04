@@ -1,12 +1,9 @@
 services:
     # Services
+    ## Stub service for IDE autocompletion; will be overridden in DaybreakStudiosAirbrakeExtension IF Airbrake is
+    ## enabled.
     daybreak_studios_airbrake.service.airbrake:
-        class: DaybreakStudios\Bundle\AirbrakeBundle\Services\AirbrakeService
-        arguments:
-            - '%daybreak_studios_airbrake.api_key%'
-            - '%daybreak_studios_airbrake.project_id%'
-            - '%daybreak_studios_airbrake.ignored_exceptions%'
-            - '%daybreak_studios_airbrake.host%'
+        class: DaybreakStudios\Bundle\AirbrakeBundle\Services\DummyAirbrakeService
 
     # Listeners
     daybreak_studios_airbrake.listener.exception:

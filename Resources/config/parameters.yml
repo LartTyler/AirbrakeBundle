@@ -1,4 +1,5 @@
 parameters:
+    daybreak_studios_airbrake.airbrake_service_class: DaybreakStudios\Bundle\AirbrakeBundle\Services\AirbrakeService
     daybreak_studios_airbrake.exception_listener_class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ExceptionListener
     daybreak_studios_airbrake.shutdown_listener_class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ShutdownListener
 

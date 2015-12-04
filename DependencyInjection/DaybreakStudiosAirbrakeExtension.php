@@ -4,6 +4,7 @@ namespace DaybreakStudios\Bundle\AirbrakeBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -26,9 +27,18 @@ class DaybreakStudiosAirbrakeExtension extends Extension
 		$loader->load('parameters.yml');
         $loader->load('services.yml');
 
-		$container->setParameter('daybreak_studios_airbrake.api_key', $config['api_key']);
-		$container->setParameter('daybreak_studios_airbrake.project_id', $config['project_id']);
-		$container->setParameter('daybreak_studios_airbrake.ignored_exceptions', $config['ignored_exceptions']);
-		$container->setParameter('daybreak_studios_airbrake.host', $config['host']);
+		if (isset($config['enabled']) && $config['enabled'] === true) {
+			$class = $container->getParameter('daybreak_studios_airbrake.airbrake_service_class');
+			$definition = new Definition($class, [
+				$config['api_key'],
+				$config['project_id'],
+				// $config['ignored_exceptions'] ?? [],
+				// $config['host'] ?? null,
+				isset($config['ignored_exceptions']) ? $config['ignored_exceptions'] : [],
+				isset($config['host']) ? $config['host'] : null
+			]);
+
+			$container->setDefinition('daybreak_studios_airbrake.service.airbrake', $definition);
+		}
     }
 }

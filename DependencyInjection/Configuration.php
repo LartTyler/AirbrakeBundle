@@ -22,6 +22,11 @@ class Configuration implements ConfigurationInterface
 		$settings = $rootNode->children();
 
 		$settings
+			->booleanNode('enabled')
+				->defaultFalse()
+			->end();
+
+		$settings
 			->scalarNode('api_key')
 			->end();
 
@@ -32,7 +37,7 @@ class Configuration implements ConfigurationInterface
 
 		$settings
 			->arrayNode('ignored_exceptions')
-				->defaultValue([])
+				->prototype('scalar')
 			->end();
 
 		$settings
