@@ -9,11 +9,14 @@
 
 		private $airbrake;
 
-		public function __construct(AirbrakeService $service) {
-			$this->airbrake = $service->getClient();
+		public function __construct(AirbrakeService $airbrake) {
+			$this->airbrake = $airbrake;
 		}
 
 		public function register(FilterControllerEvent $event) {
+			if (!$this->airbrake->isEnabled())
+				return;
+
 			register_shutdown_function([ $this, 'onShutdown' ]);
 		}
 

@@ -28,17 +28,15 @@ class DaybreakStudiosAirbrakeExtension extends Extension
         $loader->load('services.yml');
 
 		if (isset($config['enabled']) && $config['enabled'] === true) {
-			$class = $container->getParameter('daybreak_studios_airbrake.airbrake_service_class');
-			$definition = new Definition($class, [
+			$definition = $container->getDefinition('daybreak_studios_airbrake.service.airbrake');
+			$definition->addMethodCall('enable', [
 				$config['api_key'],
 				$config['project_id'],
-				// $config['ignored_exceptions'] ?? [],
-				// $config['host'] ?? null,
+					// $config['ignored_exceptions'] ?? [],
+					// $config['host'] ?? null,
 				isset($config['ignored_exceptions']) ? $config['ignored_exceptions'] : [],
 				isset($config['host']) ? $config['host'] : null
 			]);
-
-			$container->setDefinition('daybreak_studios_airbrake.service.airbrake', $definition);
 		}
     }
 }

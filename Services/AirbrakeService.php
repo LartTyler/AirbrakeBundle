@@ -2,11 +2,13 @@
 	namespace DaybreakStudios\Bundle\AirbrakeBundle\Services;
 
 	use Airbrake\Notifier;
+	use Exception;
 
 	class AirbrakeService {
-		private $client;
+		/** @var Notifier|null $client */
+		private $client = null;
 
-		public function __construct($apiKey, $projectId, $ignoredExceptions = [], $host = null) {
+		public function enable($apiKey, $projectId, $ignoredExceptions = [], $host = null) {
 			$args = [
 				'projectKey' => $apiKey,
 				'projectId' => $projectId,
@@ -30,5 +32,44 @@
 		 */
 		public function getClient() {
 			return $this->client;
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function isEnabled() {
+			return $this->client !== null;
+		}
+
+		/**
+		 * @param Exception $ex
+		 * @return array|null
+		 */
+		public function notify(Exception $ex) {
+			if (!$this->isEnabled())
+				return null;
+
+			$result = $this->client->notify($ex);
+
+			if (!is_array($result))
+				return null;
+
+			return $result;
+		}
+
+		/**
+		 * @param array $notice
+		 * @return array|null
+		 */
+		public function sendNotice(array $notice) {
+			if (!$this->isEnabled())
+				return null;
+
+			$result = $this->client->sendNotice($notice);
+
+			if (!is_array($result))
+				return null;
+
+			return $result;
 		}
 	}
