@@ -1,0 +1,9 @@
+parameters:
+    daybreak_studios_airbrake.exception_listener_class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ExceptionListener
+    daybreak_studios_airbrake.shutdown_listener_class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ShutdownListener
+
+    # Added here for IDE autocompletion; will be overridden in DaybreakStudiosAirbrakeExtension
+    daybreak_studios_airbrake.api_key: null
+    daybreak_studios_airbrake.project_id: null
+    daybreak_studios_airbrake.ignored_exceptions: []
+    daybreak_studios_airbrake.host: null

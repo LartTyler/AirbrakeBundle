@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class DaybreakStudiosAirbrakeExtension extends Extension
 {
-    /**
+	/**
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -23,6 +23,12 @@ class DaybreakStudiosAirbrakeExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+		$loader->load('parameters.yml');
         $loader->load('services.yml');
+
+		$container->setParameter('daybreak_studios_airbrake.api_key', $config['api_key']);
+		$container->setParameter('daybreak_studios_airbrake.project_id', $config['project_id']);
+		$container->setParameter('daybreak_studios_airbrake.ignored_exceptions', $config['ignored_exceptions']);
+		$container->setParameter('daybreak_studios_airbrake.host', $config['host']);
     }
 }

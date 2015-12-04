@@ -1,4 +1,28 @@
 services:
-#    daybreak_studios_airbrake.example:
-#        class: DaybreakStudios\Bundle\AirbrakeBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    # Services
+    daybreak_studios_airbrake.service.airbrake:
+        class: DaybreakStudios\Bundle\AirbrakeBundle\Services\AirbrakeService
+        arguments:
+            - '%daybreak_studios_airbrake.api_key%'
+            - '%daybreak_studios_airbrake.project_id%'
+            - '%daybreak_studios_airbrake.ignored_exceptions%'
+            - '%daybreak_studios_airbrake.host%'
+
+    # Listeners
+    daybreak_studios_airbrake.listener.exception:
+        class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ExceptionListener
+        arguments:
+            - @daybreak_studios_airbrake.service.airbrake
+        tags:
+            - name: kernel.event_listener
+              event: kernel.exception
+              method: onKernelException
+
+    daybreak_studios_airbrake.listener.shutdown:
+        class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ShutdownListener
+        arguments:
+            - @daybreak_studios_airbrake.service.airbrake
+        tags:
+            - name: kernel.event_listener
+              event: kernel.controller
+              method: register

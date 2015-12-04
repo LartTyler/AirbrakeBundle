@@ -1,0 +1,19 @@
+{
+  "name": "dbstudios/airbrake-bundle",
+  "type": "symfony-bundle",
+  "description": "Airbrake integration for Symfony",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Tyler Lartonoix",
+      "email": "overlordcodemonkey@live.com"
+    }
+  ],
+  "require": {
+    "symfony/symfony": "^2.3",
+    "airbrake/phpbrake": "^0.0.11"
+  },
+  "autoload": {
+    "DaybreakStudios\\Bundle\\AirbrakeBundle": ""
+  }
+}

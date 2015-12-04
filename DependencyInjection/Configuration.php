@@ -19,10 +19,26 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('daybreak_studios_airbrake');
+		$settings = $rootNode->children();
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+		$settings
+			->scalarNode('api_key')
+			->end();
+
+		$settings
+			->integerNode('project_id')
+				->min(0)
+			->end();
+
+		$settings
+			->arrayNode('ignored_exceptions')
+				->defaultValue([])
+			->end();
+
+		$settings
+			->scalarNode('host')
+				->defaultNull()
+			->end();
 
         return $treeBuilder;
     }
