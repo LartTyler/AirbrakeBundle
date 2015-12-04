@@ -1,3 +1,0 @@
-daybreak_studios_airbrake_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: DaybreakStudiosAirbrakeBundle:Default:index }
