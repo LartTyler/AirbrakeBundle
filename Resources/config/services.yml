@@ -1,0 +1,4 @@
+services:
+#    daybreak_studios_airbrake.example:
+#        class: DaybreakStudios\Bundle\AirbrakeBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
