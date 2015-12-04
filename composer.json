@@ -14,8 +14,8 @@
     "airbrake/phpbrake": "^0.0.11"
   },
   "autoload": {
-    "psr-0": {
-      "DaybreakStudios\\Bundle\\AirbrakeBundle": ""
+    "psr-4": {
+      "DaybreakStudios\\Bundle\\AirbrakeBundle\\": ""
     }
   }
 }
