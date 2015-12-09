@@ -5,7 +5,8 @@
 	use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 	class ShutdownListener {
-		const FATAL_ERRORS = E_ERROR | E_PARSE | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR;
+		//const FATAL_ERRORS = E_ERROR | E_PARSE | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR;
+		const FATAL_ERRORS = 4437;
 
 		private $airbrake;
 
