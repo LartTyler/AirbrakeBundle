@@ -12,6 +12,9 @@ services:
             - name: kernel.event_listener
               event: kernel.exception
               method: onKernelException
+            - name: kernel.event_listener
+              event: console.exception
+              method: onConsoleException
 
     daybreak_studios_airbrake.listener.shutdown:
         class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ShutdownListener
