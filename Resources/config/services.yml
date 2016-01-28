@@ -7,7 +7,7 @@ services:
     daybreak_studios_airbrake.listener.exception:
         class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ExceptionListener
         arguments:
-            - @daybreak_studios_airbrake.service.airbrake
+            - '@daybreak_studios_airbrake.service.airbrake'
         tags:
             - name: kernel.event_listener
               event: kernel.exception
@@ -19,7 +19,7 @@ services:
     daybreak_studios_airbrake.listener.shutdown:
         class: DaybreakStudios\Bundle\AirbrakeBundle\Listener\ShutdownListener
         arguments:
-            - @daybreak_studios_airbrake.service.airbrake
+            - '@daybreak_studios_airbrake.service.airbrake'
         tags:
             - name: kernel.event_listener
               event: kernel.controller
