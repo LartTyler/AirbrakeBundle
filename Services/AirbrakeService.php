@@ -8,7 +8,7 @@
 		/** @var Notifier|null $client */
 		private $client = null;
 
-		public function enable($apiKey, $projectId, $ignoredExceptions = [], $host = null) {
+		public function enable($apiKey, $projectId, $ignoredExceptions = [], $env = null, $version = null, $host = null) {
 			$args = [
 				'projectKey' => $apiKey,
 				'projectId' => $projectId,
@@ -16,6 +16,12 @@
 
 			if ($host !== null)
 				$args['host'] = $host;
+
+			if ($env !== null)
+				$args['environment'] = $env;
+
+			if ($version !== null)
+				$args['appVersion'] = $version;
 
 			$this->client = new Notifier($args);
 
