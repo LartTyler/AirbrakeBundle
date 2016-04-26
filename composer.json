@@ -11,7 +11,7 @@
   ],
   "require": {
     "symfony/symfony": "~2.3|~3.0",
-    "airbrake/phpbrake": "^0.0.11"
+    "airbrake/phpbrake": "0.1.*"
   },
   "autoload": {
     "psr-4": {

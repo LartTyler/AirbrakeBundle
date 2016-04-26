@@ -32,9 +32,9 @@ class DaybreakStudiosAirbrakeExtension extends Extension
 			$definition->addMethodCall('enable', [
 				$config['api_key'],
 				$config['project_id'],
-					// $config['ignored_exceptions'] ?? [],
-					// $config['host'] ?? null,
 				isset($config['ignored_exceptions']) ? $config['ignored_exceptions'] : [],
+				isset($config['environment']) ? $config['environment'] : $container->getParameter('kernel.environment'),
+				isset($config['version']) ? $config['version'] : null,
 				isset($config['host']) ? $config['host'] : null
 			]);
 		}
